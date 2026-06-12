@@ -19,8 +19,9 @@ let sensorData = {
   heartStatus: "Tidak Ada Data",
   tempStatus: "Tidak Ada Data",
 
-  timestamp:
-  new Date().toLocaleTimeString()
+  timestamp: new Date().toLocaleTimeString('id-ID', {
+  timeZone: 'Asia/Jakarta'
+})
 
 }
 
@@ -81,7 +82,9 @@ app.post('/input', (req, res) => {
     tempStatus || "Normal",
 
     timestamp:
-    new Date().toLocaleTimeString()
+    new Date().toLocaleTimeString('id-ID', {
+  timeZone: 'Asia/Jakarta'
+})
 
   }
 
