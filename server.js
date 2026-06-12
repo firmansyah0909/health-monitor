@@ -206,8 +206,10 @@ app.get('/clear', (req, res) => {
     "Tidak Ada Data",
 
     timestamp:
-    new Date()
-    .toLocaleTimeString()
+    new Date().toLocaleTimeString('id-ID', {
+  timeZone: 'Asia/Jakarta',
+  hour12: false
+})
 
   }
 

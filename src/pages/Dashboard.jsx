@@ -65,7 +65,10 @@ export default function Dashboard() {
                 setData((prev) => [
                     ...prev.slice(-19), // Keep last 20 points for smoother charts
                     {
-                        time: new Date().toLocaleTimeString('en-US', { hour12: false }),
+                        time: new Date().toLocaleTimeString('id-ID', {
+  timeZone: 'Asia/Jakarta',
+  hour12: false
+}),
                         bpm: val.bpm,
                         suhu: val.suhu
                     }
