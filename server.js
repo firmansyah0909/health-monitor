@@ -217,31 +217,16 @@ app.get('/clear', (req, res) => {
 // =========================
 // START SERVER
 // =========================
+// =========================
+// START SERVER
+// =========================
 
-app.listen(
+const PORT = process.env.PORT || 3000;
 
-  3000,
+app.listen(PORT, '0.0.0.0', () => {
 
-  '0.0.0.0',
+  console.log('\n========================');
+  console.log(`SERVER RUNNING PORT ${PORT}`);
+  console.log('========================\n');
 
-  () => {
-
-    console.log(
-      '\n========================'
-    )
-
-    console.log(
-      'SERVER RUNNING'
-    )
-
-    console.log(
-      'http://localhost:3000'
-    )
-
-    console.log(
-      '========================\n'
-    )
-
-  }
-
-)
+});
