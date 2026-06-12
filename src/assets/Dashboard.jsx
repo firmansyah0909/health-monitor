@@ -17,7 +17,7 @@ export default function Dashboard() {
       try {
 
         const response = await fetch(
-          'http://192.168.1.25:3000/data'
+          'https://health-monitor-6ls3.onrender.com/data'
         )
 
         const data = await response.json()
@@ -34,7 +34,7 @@ export default function Dashboard() {
     ambilData()
 
     // REALTIME 1 DETIK
-    const interval = setInterval(ambilData, 1000)
+    const interval = setInterval(ambilData, 500)
 
     return () => clearInterval(interval)
 

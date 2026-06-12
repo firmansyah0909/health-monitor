@@ -32,7 +32,7 @@ function App() {
 
   const [history, setHistory] = useState([]);
 
-  const API = "http://192.168.1.31:3000";
+  const API = "https://health-monitor-6ls3.onrender.com";
 
   const ambilData = async () => {
 
@@ -63,7 +63,7 @@ function App() {
 
     const interval = setInterval(
       ambilData,
-      1000
+      500
     );
 
     return () => clearInterval(interval);

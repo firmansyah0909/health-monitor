@@ -14,22 +14,22 @@ export default defineConfig({
     proxy: {
 
       '/data': {
-        target: 'http://localhost:3000',
+        target: 'https://health-monitor-6ls3.onrender.com',
         changeOrigin: true
       },
 
       '/history': {
-        target: 'http://localhost:3000',
+        target: 'https://health-monitor-6ls3.onrender.com',
         changeOrigin: true
       },
 
       '/input': {
-        target: 'http://localhost:3000',
+        target: 'https://health-monitor-6ls3.onrender.com',
         changeOrigin: true
       },
 
       '/export': {
-        target: 'http://localhost:3000',
+        target: 'https://health-monitor-6ls3.onrender.com',
         changeOrigin: true
       }
 
