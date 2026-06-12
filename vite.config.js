@@ -37,8 +37,6 @@ export default defineConfig({
 
   },
 
-  base: '/monitoring/',
-
   build: {
     outDir: 'dist'
   }
