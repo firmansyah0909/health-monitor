@@ -8,6 +8,7 @@ export default function Dashboard() {
     spo2: 0,
     temp: 0
   })
+  const [currentTime, setCurrentTime] = useState("")
 
   // AMBIL DATA DARI NODE JS
   useEffect(() => {

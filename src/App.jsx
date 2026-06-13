@@ -32,6 +32,20 @@ function App() {
 
   const [history, setHistory] = useState([]);
 
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+
+  const timer = setInterval(() => {
+
+    setCurrentTime(new Date());
+
+  }, 1000);
+
+  return () => clearInterval(timer);
+
+  }, []);
+
   const API = "https://health-monitor-6ls3.onrender.com";
 
   const ambilData = async () => {
@@ -103,8 +117,12 @@ function App() {
       </h1>
 
       <p className="time">
-        Update : {data.timestamp}
-      </p>
+    Jam Sekarang : {currentTime.toLocaleTimeString('id-ID')}
+    </p>
+
+    <p className="time">
+    Data Terakhir : {data.timestamp}
+  </p>
 
       {
         data.tempStatus === "TINGGI" && (
