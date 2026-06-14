@@ -304,3 +304,75 @@ table tr:hover{
     width:100%;
   }
 }
+.home{
+  min-height:100vh;
+}
+
+.navbar{
+  width:80%;
+  margin:auto;
+  margin-top:20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:white;
+
+  padding:20px 30px;
+
+  border-radius:10px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.menu{
+  display:flex;
+  gap:30px;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+}
+
+.hero{
+  height:75vh;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+}
+
+.hero h1{
+  font-size:60px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:24px;
+  max-width:700px;
+  margin-bottom:30px;
+}
+
+.btn-home{
+  background:#2563eb;
+  color:white;
+
+  text-decoration:none;
+
+  padding:15px 30px;
+
+  border-radius:10px;
+
+  font-weight:bold;
+}
