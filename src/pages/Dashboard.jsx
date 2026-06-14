@@ -13,9 +13,10 @@ import {
 
 import {
   FaHeartbeat,
-  FaTemperatureHigh,
-  FaLungs
+  FaTemperatureHigh
 } from "react-icons/fa";
+
+import { MdBloodtype } from "react-icons/md";
 
 import "../App.css";
 
@@ -162,7 +163,7 @@ function Dashboard() {
 
         <div className="card">
 
-          <FaLungs size={40} />
+          <MdBloodtype size={40} />
 
           <h2>
             SpO₂
