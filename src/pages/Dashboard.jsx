@@ -120,10 +120,6 @@ function Dashboard() {
     Jam Sekarang : {currentTime.toLocaleTimeString('id-ID')}
     </p>
 
-    <p className="time">
-    Data Terakhir : {data.timestamp}
-  </p>
-
       {
         data.tempStatus === "TINGGI" && (
           <div className="alert-red">
