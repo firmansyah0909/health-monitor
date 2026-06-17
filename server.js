@@ -12,6 +12,7 @@ app.use(express.json())
 
 let sensorData = {
 
+  nama: "",
   hr: 0,
   spo2: 0,
   temp: 0,
@@ -55,6 +56,7 @@ app.post('/input', (req, res) => {
 
   const {
 
+    nama,
     hr,
     spo2,
     temp,
@@ -65,6 +67,9 @@ app.post('/input', (req, res) => {
   } = req.body
 
   sensorData = {
+
+    nama:
+    nama|| "",
 
     hr:
     Number(hr),
@@ -142,11 +147,14 @@ app.get('/export', (req, res) => {
 
   let csv =
 
-  'Time,HeartRate,SpO2,Temperature,HeartStatus,TempStatus\n'
+  'Nama,Time,HeartRate,SpO2,Temperature,HeartStatus,TempStatus\n'
 
   history.forEach(item => {
 
     csv +=
+
+    `${item.nama},`
+    +
 
     `${item.timestamp},`
 
@@ -171,6 +179,41 @@ app.get('/export', (req, res) => {
     `${item.tempStatus}\n`
 
   })
+  const last10 = history.slice(-10);
+
+if (last10.length > 0) {
+
+  const avgHR =
+  (
+    last10.reduce(
+      (sum, item) => sum + item.hr,
+      0
+    ) / last10.length
+  ).toFixed(2);
+
+  const avgSpO2 =
+  (
+    last10.reduce(
+      (sum, item) => sum + item.spo2,
+      0
+    ) / last10.length
+  ).toFixed(2);
+
+  const avgTemp =
+  (
+    last10.reduce(
+      (sum, item) => sum + item.temp,
+      0
+    ) / last10.length
+  ).toFixed(2);
+
+  csv += "\n";
+  csv += "RATA-RATA 10 DATA TERAKHIR\n";
+  csv += `Heart Rate,${avgHR}\n`;
+  csv += `SpO2,${avgSpO2}\n`;
+  csv += `Temperature,${avgTemp}\n`;
+
+}
 
   res.header(
     'Content-Type',
@@ -178,7 +221,7 @@ app.get('/export', (req, res) => {
   )
 
   res.attachment(
-    'health_monitor.csv'
+    'juven_monitor.csv'
   )
 
   res.send(csv)
