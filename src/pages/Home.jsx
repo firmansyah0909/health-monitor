@@ -4,37 +4,7 @@ import { useState } from "react";
 
 function Home() {
 
-  const [nama, setNama] = useState("");
-  const [umur, setUmur] = useState("");
-  const [jk, setJk] = useState("Laki-laki");
   const navigate = useNavigate();
-
-  const mulaiMonitoring = () => {
-
-    if (nama.trim() === "") {
-
-      alert("Masukkan nama pasien terlebih dahulu");
-
-      return;
-    }
-
-      localStorage.setItem(
-        "namaPasien",
-        nama
-      );
-
-      localStorage.setItem(
-        "umurPasien",
-        umur
-      );
-
-      localStorage.setItem(
-        "jkPasien",
-        jk
-      );
-
-      navigate("/dashboard");
-  };
 
   return (
 
@@ -79,38 +49,8 @@ function Home() {
           Arduino & ESP8266.
         </p>
 
-        <input
-          type="text"
-          placeholder="Masukkan Nama Pasien"
-          value={nama}
-          onChange={(e) =>
-            setNama(e.target.value)
-          }
-          className="input-nama"
-        />
-        <input
-          type="number"
-          placeholder="Masukkan Umur"
-          value={umur}
-          onChange={(e) =>
-            setUmur(e.target.value)
-          }
-          className="input-nama"
-        />
-
-        <select
-          value={jk}
-          onChange={(e) =>
-            setJk(e.target.value)
-          }
-          className="input-nama"
-        >
-          <option>Laki-laki</option>
-          <option>Perempuan</option>
-        </select>
-
         <button
-          onClick={mulaiMonitoring}
+          onClick={() => navigate("/dashboard")}
           className="btn-home"
         >
           Mulai Monitoring

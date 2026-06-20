@@ -127,36 +127,30 @@ return (
 
   <div className="container">
 
-    <div className="patient-card">
+<div className="header-monitor">
 
-      <h3>Data Pasien</h3>
+  <div className="header-left">
 
-      <p>
-        Nama : {namaPasien}
-      </p>
+    <img
+      src="/logo-kkn.jpeg"
+      alt="Logo KKN"
+      className="header-logo"
+    />
 
-      <p>
-        Umur : {umurPasien} Tahun
-      </p>
+    <h2>
+      KKN UNTIDAR 2026
+    </h2>
 
-      <p>
-        Jenis Kelamin : {jkPasien}
-      </p>
+  </div>
 
-    </div>
+  <div className="header-right">
 
-    <h1>
-      JUVEN MONITORING
-    </h1>
+    Jam :
+    {currentTime.toLocaleTimeString('id-ID')}
 
-      <h3>
-        Pasien :
-        {localStorage.getItem("namaPasien") || "-"}
-      </h3>
+  </div>
 
-      <p className="time">
-    Jam Sekarang : {currentTime.toLocaleTimeString('id-ID')}
-    </p>
+</div>
 
       {
         data.tempStatus === "TINGGI" && (
