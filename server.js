@@ -145,88 +145,81 @@ app.get('/history', (req, res) => {
 
 app.get('/export', (req, res) => {
 
-  let csv =
+  const nama =
+    req.query.nama || "-";
 
-  'Nama,Time,HeartRate,SpO2,Temperature,HeartStatus,TempStatus\n'
+  let csv = "";
 
+  // IDENTITAS PASIEN
+  csv += `Nama Pasien,${nama}\n`;
+  csv += "\n";
+
+  // HEADER DATA
+  csv +=
+    "Time,HeartRate,SpO2,Temperature,HeartStatus,TempStatus\n";
+
+  // DATA MONITORING
   history.forEach(item => {
 
     csv +=
+      `${item.timestamp},` +
+      `${item.hr},` +
+      `${item.spo2},` +
+      `${item.temp},` +
+      `${item.heartStatus},` +
+      `${item.tempStatus}\n`;
 
-    `${item.nama},`
-    +
+  });
 
-    `${item.timestamp},`
-
-    +
-
-    `${item.hr},`
-
-    +
-
-    `${item.spo2},`
-
-    +
-
-    `${item.temp},`
-
-    +
-
-    `${item.heartStatus},`
-
-    +
-
-    `${item.tempStatus}\n`
-
-  })
+  // RATA-RATA 10 DATA TERAKHIR
   const last10 = history.slice(-10);
 
-if (last10.length > 0) {
+  if (last10.length > 0) {
 
-  const avgHR =
-  (
-    last10.reduce(
-      (sum, item) => sum + item.hr,
-      0
-    ) / last10.length
-  ).toFixed(2);
+    const avgHR =
+      (
+        last10.reduce(
+          (sum, item) => sum + item.hr,
+          0
+        ) / last10.length
+      ).toFixed(2);
 
-  const avgSpO2 =
-  (
-    last10.reduce(
-      (sum, item) => sum + item.spo2,
-      0
-    ) / last10.length
-  ).toFixed(2);
+    const avgSpO2 =
+      (
+        last10.reduce(
+          (sum, item) => sum + item.spo2,
+          0
+        ) / last10.length
+      ).toFixed(2);
 
-  const avgTemp =
-  (
-    last10.reduce(
-      (sum, item) => sum + item.temp,
-      0
-    ) / last10.length
-  ).toFixed(2);
+    const avgTemp =
+      (
+        last10.reduce(
+          (sum, item) => sum + item.temp,
+          0
+        ) / last10.length
+      ).toFixed(2);
 
-  csv += "\n";
-  csv += "RATA-RATA 10 DATA TERAKHIR\n";
-  csv += `Heart Rate,${avgHR}\n`;
-  csv += `SpO2,${avgSpO2}\n`;
-  csv += `Temperature,${avgTemp}\n`;
+    csv += "\n";
+    csv += "RATA-RATA 10 DATA TERAKHIR\n";
+    csv += `Heart Rate,${avgHR}\n`;
+    csv += `SpO2,${avgSpO2}\n`;
+    csv += `Temperature,${avgTemp}\n`;
 
-}
+  }
 
   res.header(
-    'Content-Type',
-    'text/csv'
-  )
+    "Content-Type",
+    "text/csv"
+  );
 
   res.attachment(
-    'juven_monitor.csv'
-  )
+    "juven_monitor.csv"
+  );
 
-  res.send(csv)
+  res.send(csv);
 
-})
+});
 
 // =========================
 // CLEAR DATA

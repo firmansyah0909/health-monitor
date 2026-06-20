@@ -85,14 +85,19 @@ function Dashboard() {
 
   }, []);
 
-  const exportCSV = () => {
+const exportCSV = () => {
 
-    window.open(
-      `${API}/export`,
-      "_blank"
-    );
+  const nama =
+    localStorage.getItem("namaPasien") || "-";
 
-  };
+  console.log("NAMA =", nama);
+
+  window.open(
+    `${API}/export?nama=${encodeURIComponent(nama)}`,
+    "_blank"
+  );
+
+};
 
   const clearData = async () => {
 
@@ -104,18 +109,50 @@ function Dashboard() {
 
   };
 
-  const data10Terakhir =
-    [...history]
-      .reverse()
-      .slice(0, 10);
+const data10Terakhir =
+  [...history]
+    .reverse()
+    .slice(0, 10);
 
-  return (
+const namaPasien =
+  localStorage.getItem("namaPasien") || "-";
 
-    <div className="container">
+const umurPasien =
+  localStorage.getItem("umurPasien") || "-";
 
-      <h1>
-        JUVEN MONITORING
-      </h1>
+const jkPasien =
+  localStorage.getItem("jkPasien") || "-";
+
+return (
+
+  <div className="container">
+
+    <div className="patient-card">
+
+      <h3>Data Pasien</h3>
+
+      <p>
+        Nama : {namaPasien}
+      </p>
+
+      <p>
+        Umur : {umurPasien} Tahun
+      </p>
+
+      <p>
+        Jenis Kelamin : {jkPasien}
+      </p>
+
+    </div>
+
+    <h1>
+      JUVEN MONITORING
+    </h1>
+
+      <h3>
+        Pasien :
+        {localStorage.getItem("namaPasien") || "-"}
+      </h3>
 
       <p className="time">
     Jam Sekarang : {currentTime.toLocaleTimeString('id-ID')}
