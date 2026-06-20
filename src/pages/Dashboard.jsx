@@ -87,13 +87,8 @@ function Dashboard() {
 
 const exportCSV = () => {
 
-  const nama =
-    localStorage.getItem("namaPasien") || "-";
-
-  console.log("NAMA =", nama);
-
   window.open(
-    `${API}/export?nama=${encodeURIComponent(nama)}`,
+    `${API}/export`,
     "_blank"
   );
 
@@ -234,83 +229,87 @@ return (
 
       </div>
 
-      <div className="chart">
+ <div className="charts-row">
 
-        <h2>
-          Grafik Heart Rate
-        </h2>
+  <div className="chart">
 
-        <ResponsiveContainer
-          width="100%"
-          height={300}
-        >
+    <h2>
+      Grafik Heart Rate
+    </h2>
 
-          <LineChart
-            data={history}
-          >
+    <ResponsiveContainer
+      width="100%"
+      height={300}
+    >
 
-            <CartesianGrid
-              strokeDasharray="3 3"
-            />
+      <LineChart
+        data={history}
+      >
 
-            <XAxis
-              dataKey="timestamp"
-            />
+        <CartesianGrid
+          strokeDasharray="3 3"
+        />
 
-            <YAxis />
+        <XAxis
+          dataKey="timestamp"
+        />
 
-            <Tooltip />
+        <YAxis />
 
-            <Line
-              type="monotone"
-              dataKey="hr"
-              stroke="#ff0000"
-            />
+        <Tooltip />
 
-          </LineChart>
+        <Line
+          type="monotone"
+          dataKey="hr"
+          stroke="#ff0000"
+        />
 
-        </ResponsiveContainer>
+      </LineChart>
 
-      </div>
+    </ResponsiveContainer>
 
-      <div className="chart">
+  </div>
 
-        <h2>
-          Grafik Suhu
-        </h2>
+  <div className="chart">
 
-        <ResponsiveContainer
-          width="100%"
-          height={300}
-        >
+    <h2>
+      Grafik Suhu
+    </h2>
 
-          <LineChart
-            data={history}
-          >
+    <ResponsiveContainer
+      width="100%"
+      height={300}
+    >
 
-            <CartesianGrid
-              strokeDasharray="3 3"
-            />
+      <LineChart
+        data={history}
+      >
 
-            <XAxis
-              dataKey="timestamp"
-            />
+        <CartesianGrid
+          strokeDasharray="3 3"
+        />
 
-            <YAxis />
+        <XAxis
+          dataKey="timestamp"
+        />
 
-            <Tooltip />
+        <YAxis />
 
-            <Line
-              type="monotone"
-              dataKey="temp"
-              stroke="#0066ff"
-            />
+        <Tooltip />
 
-          </LineChart>
+        <Line
+          type="monotone"
+          dataKey="temp"
+          stroke="#0066ff"
+        />
 
-        </ResponsiveContainer>
+      </LineChart>
 
-      </div>
+    </ResponsiveContainer>
+
+  </div>
+
+</div>
 
       <div className="button-group">
 

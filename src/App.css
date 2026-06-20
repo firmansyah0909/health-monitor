@@ -468,3 +468,12 @@ table tr:hover{
   font-size:18px;
   font-weight:600;
 }
+.charts-row{
+  display:flex;
+  gap:20px;
+  margin-top:20px;
+}
+
+.charts-row .chart{
+  flex:1;
+}

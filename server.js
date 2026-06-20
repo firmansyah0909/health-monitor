@@ -145,18 +145,8 @@ app.get('/history', (req, res) => {
 
 app.get('/export', (req, res) => {
 
-  const nama =
-    req.query.nama || "-";
-
-  let csv = "";
-
-  // IDENTITAS PASIEN
-  csv += `Nama Pasien,${nama}\n`;
-  csv += "\n";
-
-  // HEADER DATA
-  csv +=
-    "Time,HeartRate,SpO2,Temperature,HeartStatus,TempStatus\n";
+  let csv =
+  'Time,HeartRate,SpO2,Temperature,HeartStatus,TempStatus\n';
 
   // DATA MONITORING
   history.forEach(item => {
