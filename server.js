@@ -183,18 +183,53 @@ app.get('/export', (req, res) => {
       ).toFixed(2);
 
     const avgTemp =
+    
       (
         last10.reduce(
           (sum, item) => sum + item.temp,
           0
         ) / last10.length
       ).toFixed(2);
+      let statusHR = "";
+      let statusSpO2 = "";
+      let statusTemp = "";
 
+      // Heart Rate
+      if (avgHR < 60) {
+        statusHR = "LAMBAT";
+      }
+      else if (avgHR > 100) {
+        statusHR = "CEPAT";
+      }
+      else {
+        statusHR = "NORMAL";
+      }
+
+      // SpO2
+      if (avgSpO2 >= 95) {
+        statusSpO2 = "NORMAL";
+      }
+      else {
+        statusSpO2 = "RENDAH";
+      }
+
+      // Temperature
+      if (avgTemp < 36) {
+        statusTemp = "RENDAH";
+      }
+      else if (avgTemp > 37.5) {
+        statusTemp = "TINGGI";
+      }
+      else {
+        statusTemp = "NORMAL";
+      }
     csv += "\n";
     csv += "RATA-RATA 10 DATA TERAKHIR\n";
-    csv += `Heart Rate,${avgHR}\n`;
-    csv += `SpO2,${avgSpO2}\n`;
-    csv += `Temperature,${avgTemp}\n`;
+    csv += "Parameter,Nilai,Status\n";
+
+    csv += `Heart Rate,${avgHR},${statusHR}\n`;
+    csv += `SpO2,${avgSpO2},${statusSpO2}\n`;
+    csv += `Temperature,${avgTemp},${statusTemp}\n`;
 
   }
 
@@ -204,7 +239,7 @@ app.get('/export', (req, res) => {
   );
 
   res.attachment(
-    "juven_monitor.csv"
+    "juven.csv"
   );
 
   res.send(csv);
